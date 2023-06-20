@@ -6,6 +6,7 @@ export const style = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
   root: {
     flex: 1,
@@ -21,5 +22,9 @@ export const style = StyleSheet.create({
     color: colors.white,
     textTransform: 'uppercase',
     marginTop: 16,
+  },
+  indicator: {
+    position: 'absolute',
+    bottom: 50,
   },
 });

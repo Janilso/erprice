@@ -5,6 +5,7 @@ import {
   MavenPro_700Bold,
 } from '@expo-google-fonts/maven-pro';
 import AppRoutes from './src/routes';
+import MoedasProvider from './src/contexts/moedas';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -17,5 +18,9 @@ export default function App() {
     return null;
   }
 
-  return <AppRoutes />;
+  return (
+    <MoedasProvider>
+      <AppRoutes />
+    </MoedasProvider>
+  );
 }
