@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  useFonts,
+  MavenPro_400Regular,
+  MavenPro_500Medium,
+  MavenPro_700Bold,
+} from '@expo-google-fonts/maven-pro';
+import AppRoutes from './src/routes';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  let [fontsLoaded] = useFonts({
+    MavenProRegular: MavenPro_400Regular,
+    MavenProMedium: MavenPro_500Medium,
+    MavenProBold: MavenPro_700Bold,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
+  return <AppRoutes />;
+}
