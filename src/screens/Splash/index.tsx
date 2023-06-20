@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { style } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../theme';
 import { Icon } from '../../../assets/icons';
+import cotacaoSevice from '../../services/cotacao';
 
 const Splash: React.FC = () => {
+  useEffect(() => {
+    cotacaoSevice.getMoedas('USD-BRL', 15);
+  });
   return (
     <>
       <View style={style.root}>

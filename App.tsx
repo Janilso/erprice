@@ -13,9 +13,9 @@ export default function App() {
     MavenProBold: MavenPro_700Bold,
   });
 
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return <AppRoutes />;
 }
