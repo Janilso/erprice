@@ -5,10 +5,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../theme';
 import { Icon } from '../../../assets/icons';
 import cotacaoSevice from '../../services/cotacao';
+import { storage } from '../../utils/storage';
 
 const Splash: React.FC = () => {
+  const verifyStorage = async () => {
+    const dateNow = Date.now();
+    const dataStorage = await storage.getDataXML();
+  };
+
   useEffect(() => {
-    cotacaoSevice.getMoedas('USD-BRL', 15);
+    verifyStorage();
+    cotacaoSevice.getMoedas();
   });
   return (
     <>
