@@ -14,7 +14,7 @@ const setDataXML = async (data: IDataSetXML) => {
 };
 
 const getDataXML = async () => {
-  let data: IDataSetXML = { date: '', moedas: [] };
+  let data: IDataSetXML = { date: undefined, moedas: [] };
   try {
     const jsonValue = await AsyncStorage.getItem(STORAGE_KEYS.MOEDAS);
     if (jsonValue != null) data = JSON.parse(jsonValue) as IDataSetXML;

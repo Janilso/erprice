@@ -1,4 +1,4 @@
 interface IDataSetXML {
-  date: string;
+  date?: number;
   moedas: IMoeda[];
 }

@@ -1,4 +1,5 @@
 import { DOMParser } from '@xmldom/xmldom';
+import { differenceInDays, parse } from 'date-fns';
 
 export const getMoedasByDataXML = (xml: string) => {
   const parser = new DOMParser();
@@ -16,4 +17,11 @@ export const getMoedasByDataXML = (xml: string) => {
   );
 
   return moedas;
+};
+
+export const checkDiffDate = (dateInTimestemp?: number, dataDiff?: number) => {
+  if (dateInTimestemp && dataDiff) {
+    const diff = differenceInDays(Date.now(), dateInTimestemp);
+    return diff >= dataDiff;
+  } else return true;
 };
