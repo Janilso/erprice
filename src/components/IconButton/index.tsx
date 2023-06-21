@@ -7,7 +7,7 @@ interface IconButtonProps {
   width?: number;
   height?: number;
   children: React.ReactElement;
-  onPress?: (e: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
 }
 
 const IconButton: React.FC<IconButtonProps> = ({

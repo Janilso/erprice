@@ -1,5 +1,5 @@
 import { DOMParser } from '@xmldom/xmldom';
-import { differenceInDays, parse } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 
 export const getMoedasByDataXML = (xml: string) => {
   const parser = new DOMParser();

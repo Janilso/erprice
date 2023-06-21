@@ -17,6 +17,10 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'MavenProMedium',
     fontSize: 24,
   },
+  fontH5Regular: {
+    fontFamily: 'MavenProRegular',
+    fontSize: 18,
+  },
   fontH6Regular: {
     fontFamily: 'MavenProRegular',
     fontSize: 16,
