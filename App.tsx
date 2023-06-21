@@ -6,6 +6,7 @@ import {
 } from '@expo-google-fonts/maven-pro';
 import AppRoutes from './src/routes';
 import MoedasProvider from './src/contexts/moedas';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -19,8 +20,10 @@ export default function App() {
   }
 
   return (
-    <MoedasProvider>
-      <AppRoutes />
-    </MoedasProvider>
+    <SafeAreaProvider>
+      <MoedasProvider>
+        <AppRoutes />
+      </MoedasProvider>
+    </SafeAreaProvider>
   );
 }

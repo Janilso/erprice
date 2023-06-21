@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { style } from './styles';
+import { useSstyles } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors } from '../../theme';
 import { Icon } from '../../../assets/icons';
@@ -13,6 +13,8 @@ import { ROUTES_NAME } from '../../routes/routesName';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Splash: React.FC = () => {
+  const styles = useSstyles();
+
   const { setMoedas, setCode, setCodein } = useContext(
     MoedasContext
   ) as MoedasContextType;
@@ -65,18 +67,18 @@ const Splash: React.FC = () => {
   }, []);
 
   return (
-    <View style={style.root}>
+    <View style={styles.root}>
       <LinearGradient
         colors={[colors.primaryMedium, colors.primaryLight]}
-        style={style.background}
+        style={styles.background}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
         <Icon.Logo width={115} height={115} />
-        <Text style={style.title}>ERPRICE</Text>
-        <Text style={style.subtitle}>COTAÇÃO DE MOEDAS</Text>
+        <Text style={styles.title}>ERPRICE</Text>
+        <Text style={styles.subtitle}>COTAÇÃO DE MOEDAS</Text>
         <ActivityIndicator
-          style={style.indicator}
+          style={styles.indicator}
           size="large"
           color={colors.white}
         />
