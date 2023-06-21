@@ -18,7 +18,6 @@ interface CustomButtonProps {
 const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) => {
   const styles = useStyles();
 
-  //   return <Button title={title} onPress={onPress} color={colors.primaryLight} />;
   return (
     <View style={styles.container}>
       <TouchableHighlight onPress={onPress} style={styles.button}>

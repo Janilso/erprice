@@ -55,6 +55,7 @@ const AppRoutes: React.FC = () => {
                     paddingHorizontal: !isPageSpash ? 20 : 0,
                     paddingTop: !isPageSpash ? 40 : 0,
                   },
+                  animation: 'slide_from_right',
                 }}
               />
             );
