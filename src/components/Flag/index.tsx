@@ -9,12 +9,19 @@ interface FlagProps {
   icon: React.FC<SvgProps>;
 }
 
-const Flag: React.FC<FlagProps> = ({ icon: Icon, width, height, opacity }) => {
+const Flag: React.FC<FlagProps> = ({
+  icon: Icon,
+  width: widthProps,
+  height: heightProps,
+  opacity,
+}) => {
+  const width = widthProps ?? 70;
+  const height = heightProps ?? 70;
   const styles = useStyles({ width, height, opacity });
 
   return (
     <View style={styles.root}>
-      <Icon />
+      <Icon width={width} height={height} />
     </View>
   );
 };

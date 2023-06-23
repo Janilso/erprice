@@ -1,4 +1,10 @@
-import { ListRenderItemInfo, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useStyles } from './styles';
 import SmoothPicker from 'react-native-smooth-picker';
 import { memo, useMemo, useState } from 'react';
@@ -141,8 +147,8 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
   const styles = useStyles();
   const [selected, setSelected] = useState<SelectedItem>();
 
-  const renderItem = (option: ListRenderItemInfo<SelectedItem>) => {
-    const { item, index } = option;
+  const renderItem = (item: Coin) => {
+    // const { item, index } = option;
 
     // const isSelected = index === selected;
     // const gap = Math.abs(index - selected);
@@ -156,7 +162,7 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
     //   fontSize = sizeText[2];
     // }
 
-    return <Flag width={50} height={50} icon={item.icon} />;
+    return <Flag icon={item.icon} />;
   };
 
   return (
@@ -164,7 +170,7 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
       <Text>My select </Text>
 
       <View>
-        <SmoothPicker
+        {/* <SmoothPicker
           initialScrollToIndex={0}
           onScrollToIndexFailed={() => {}}
           keyExtractor={(_, index) => index.toString()}
@@ -180,6 +186,13 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
           magnet
           horizontal
           selectOnPress
+        /> */}
+        <FlatList
+          data={coins}
+          renderItem={({ item }) => renderItem(item)}
+          keyExtractor={(item, index) => item.name + index}
+          horizontal
+          // numColumns={3}
         />
       </View>
       {/* <View>
