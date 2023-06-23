@@ -13,8 +13,13 @@ import CustomHeader from '../components/CustomHeader';
 
 const { Navigator, Screen } = createNativeStackNavigator<StackParamList>();
 
-const routes = [
-  { name: ROUTES_NAME.SPLASH, componet: Splash, title: '', headerShown: false },
+const routes: Array<AppStackRoutesType> = [
+  {
+    name: ROUTES_NAME.SPLASH as keyof StackParamList,
+    componet: Splash,
+    title: '',
+    headerShown: false,
+  },
   {
     name: ROUTES_NAME.HOME,
     componet: Home,

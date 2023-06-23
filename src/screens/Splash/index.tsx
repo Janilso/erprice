@@ -23,7 +23,7 @@ const Splash: React.FC = () => {
 
   const changePage = () => {
     setTimeout(() => {
-      return navigation.replace(ROUTES_NAME.HOME as keyof StackParamList);
+      return navigation.replace(ROUTES_NAME.HOME);
     }, 3000);
   };
 

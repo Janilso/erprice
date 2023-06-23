@@ -6,6 +6,7 @@ export const colors = {
   primaryDark: '#009ea5',
   white: '#ffffff',
   backGroundPage: '#f9f9f9',
+  black: '#000000',
 };
 
 export const globalStyles = StyleSheet.create({

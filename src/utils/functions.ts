@@ -9,7 +9,7 @@ export const getMoedasByDataXML = (xml: string) => {
   const moedas = Array.from({ length: itens?.length ?? 0 }).reduce<IMoeda[]>(
     (acc, _, index) => {
       const code = itens?.item(index).nodeName;
-      const name = itens?.item(0).textContent;
+      const name = itens?.item(index).textContent;
       if (code && name) return [...acc, { code, name }];
       return [];
     },

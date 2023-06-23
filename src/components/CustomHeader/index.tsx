@@ -1,5 +1,4 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import React from 'react';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStyles } from './styles';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { GestureResponderEvent, TouchableHighlight } from 'react-native';
 import { colors } from '../../theme';
 import { useStyles } from './styles';
