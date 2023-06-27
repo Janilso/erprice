@@ -44,6 +44,7 @@ const Flag: React.FC<FlagProps> = ({
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
+      marginLeft: configureAnimation(transX, [0, 12, 0, -12, 0]),
       opacity: configureAnimation(transX, [0.2, 0.4, 1, 0.4, 0.2]),
       transform: [
         {

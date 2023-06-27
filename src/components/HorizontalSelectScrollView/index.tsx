@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from 'react';
+import React, { createRef, useRef } from 'react';
 import { useStyles } from './styles';
 import { FlatList, View } from 'react-native';
 import Flag from '../Flag';
