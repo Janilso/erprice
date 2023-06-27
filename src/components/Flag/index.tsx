@@ -1,29 +1,67 @@
-import { View } from 'react-native';
-import { SvgProps } from 'react-native-svg';
+import { View, ViewToken } from 'react-native';
 import { useStyles } from './styles';
+import { memo } from 'react';
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 
 interface FlagProps {
-  width?: number;
-  height?: number;
-  opacity?: number;
-  icon: React.FC<SvgProps>;
+  sizeContent: number;
+  index: number;
+  coin: Coin;
+  transX: Animated.SharedValue<number>;
 }
 
 const Flag: React.FC<FlagProps> = ({
-  icon: Icon,
-  width: widthProps,
-  height: heightProps,
-  opacity,
+  coin,
+  sizeContent = 70,
+  index,
+  transX,
 }) => {
-  const width = widthProps ?? 70;
-  const height = heightProps ?? 70;
-  const styles = useStyles({ width, height, opacity });
+  const styles = useStyles({
+    width: sizeContent,
+    height: sizeContent,
+  });
+
+  const configureAnimation = (
+    transitionX: Animated.SharedValue<number>,
+    output: number[]
+  ) => {
+    'worklet';
+
+    const input = [
+      (index - 2) * sizeContent,
+      (index - 1) * sizeContent,
+      index * sizeContent,
+      (index + 1) * sizeContent,
+      (index + 2) * sizeContent,
+    ];
+
+    return interpolate(transitionX.value, input, output, Extrapolate.CLAMP);
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: configureAnimation(transX, [0.2, 0.4, 1, 0.4, 0.2]),
+      transform: [
+        {
+          scale: configureAnimation(transX, [0.6, 0.8, 1, 0.8, 0.6]),
+        },
+      ],
+    };
+  }, []);
+
+  const Icon = coin.icon;
 
   return (
     <View style={styles.root}>
-      <Icon width={width} height={height} />
+      <Animated.View style={animatedStyle}>
+        <Icon width={sizeContent} height={sizeContent} />
+      </Animated.View>
     </View>
   );
 };
 
-export default Flag;
+export default memo(Flag);
