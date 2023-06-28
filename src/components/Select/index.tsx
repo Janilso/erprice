@@ -2,9 +2,7 @@ import { memo, useState } from 'react';
 import {
   Dimensions,
   FlatList,
-  ListRenderItemInfo,
   Text,
-  TextInput,
   TouchableHighlight,
   View,
 } from 'react-native';
@@ -22,26 +20,26 @@ interface SelectProps {
 }
 
 interface ItemProps {
-  item: Coin;
+  coin: Coin;
   index: number;
   selected: boolean;
-  onSelect: (item: Coin, index: number) => void;
+  onSelect: (coin: Coin) => void;
 }
 
-const Item = memo(({ item, index, selected, onSelect }: ItemProps) => {
+const Item = memo(({ coin, index, selected, onSelect }: ItemProps) => {
   const styles = useStylesItem({ selected });
 
-  const Icon: React.FC<SvgProps> = item.icon;
+  const Icon: React.FC<SvgProps> = coin.icon;
 
   return (
     <TouchableHighlight
-      key={index + item.code}
+      key={index + coin.code}
       underlayColor={selected ? colors.white : colors.primaryDark}
-      onPress={() => onSelect(item, index)}
+      onPress={() => onSelect(coin)}
     >
       <View style={styles.modalListItem}>
         <Icon width={45} height={50} />
-        <Text style={styles.modalListItemText}>{item.name}</Text>
+        <Text style={styles.modalListItemText}>{coin.name}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -57,11 +55,13 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-  const handleSelectItem = (item: Coin, index: number) => {
-    setSelectedCoin(item);
+  const handleSelectItem = (coin: Coin) => {
+    setSelectedCoin(coin);
     setOpenModal(false);
-    onSelect(item, index);
+    const index = coins.findIndex((item) => item.code === coin.code);
+    onSelect(coin, index);
   };
+
   const getItems = () => {
     if (search) {
       const filtered = coins.filter((coin) => {
@@ -102,7 +102,7 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
             data={getItems()}
             renderItem={({ item, index }) => (
               <Item
-                item={item}
+                coin={item}
                 index={index}
                 selected={item.code === selectedCoin?.code}
                 onSelect={handleSelectItem}
