@@ -5,9 +5,8 @@ interface UseStylesProps {
   height?: number;
 }
 
-export const useStyles = (props: UseStylesProps) => {
-  const { width, height } = props;
-  return StyleSheet.create({
+export const useStyles = ({ width, height }: UseStylesProps) =>
+  StyleSheet.create({
     root: {
       width: width ?? 30,
       height: height ?? 30,
@@ -16,4 +15,3 @@ export const useStyles = (props: UseStylesProps) => {
       alignItems: 'center',
     },
   });
-};

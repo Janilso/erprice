@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../theme';
 
 interface UseStylesProps {
   size: number;
@@ -7,10 +6,8 @@ interface UseStylesProps {
   widthParent: number;
 }
 
-export const useStyles = (props: UseStylesProps) => {
-  const { size, sideItems, widthParent } = props;
-
-  return StyleSheet.create({
+export const useStyles = ({ size, sideItems, widthParent }: UseStylesProps) =>
+  StyleSheet.create({
     timelineContainer: {
       flexGrow: 0,
       flexDirection: 'row',
@@ -21,4 +18,3 @@ export const useStyles = (props: UseStylesProps) => {
       paddingRight: size * sideItems,
     },
   });
-};

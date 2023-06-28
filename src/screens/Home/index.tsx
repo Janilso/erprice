@@ -18,10 +18,10 @@ const Home: React.FC = () => {
       <Text>Eu sou a Home page ó</Text>
       <SelectCoin coins={moedasContext?.moedas ?? []} />
 
-      <CustomButton
+      {/* <CustomButton
         title="Detalhes"
         onPress={() => navigate(ROUTES_NAME.DETAILS)}
-      />
+      /> */}
     </View>
   );
 };

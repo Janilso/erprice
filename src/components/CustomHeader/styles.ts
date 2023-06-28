@@ -2,8 +2,12 @@ import { StyleSheet } from 'react-native';
 import { EdgeInsets } from 'react-native-safe-area-context';
 import { colors, globalStyles } from '../../theme';
 
-export const useStyles = (insets: EdgeInsets) => {
-  return StyleSheet.create({
+interface UseStylesProps {
+  insets: EdgeInsets;
+}
+
+export const useStyles = ({ insets }: UseStylesProps) =>
+  StyleSheet.create({
     root: {
       paddingTop: insets.top + 10,
       paddingLeft: insets.left + 15,
@@ -21,4 +25,3 @@ export const useStyles = (insets: EdgeInsets) => {
       width: 30,
     },
   });
-};

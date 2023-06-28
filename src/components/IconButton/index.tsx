@@ -20,7 +20,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   return (
     <TouchableHighlight
       style={styles.root}
-      underlayColor={`${colors.primaryDark}22`}
+      underlayColor={colors.primaryDark13}
       onPress={onPress}
     >
       {children}

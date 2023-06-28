@@ -5,9 +5,8 @@ interface UseStylesProps {
   height: number;
 }
 
-export const useStyles = (props: UseStylesProps) => {
-  const { width, height } = props;
-  return StyleSheet.create({
+export const useStyles = ({ width, height }: UseStylesProps) =>
+  StyleSheet.create({
     root: {
       flexDirection: 'row',
       justifyContent: 'center',
@@ -16,4 +15,3 @@ export const useStyles = (props: UseStylesProps) => {
       height,
     },
   });
-};

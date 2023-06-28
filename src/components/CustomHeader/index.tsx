@@ -10,7 +10,7 @@ const CustomHeader: React.FC<NativeStackHeaderProps> = ({
   navigation,
 }) => {
   const insets = useSafeAreaInsets();
-  const styles = useStyles(insets);
+  const styles = useStyles({ insets });
 
   const haveGoBack = navigation.canGoBack();
 
