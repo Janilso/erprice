@@ -25,3 +25,14 @@ export const checkDiffDate = (dateInTimestemp?: number, dataDiff?: number) => {
     return diff >= dataDiff;
   } else return true;
 };
+
+export const removeAccents = (str: string) => {
+  let text = str;
+  text = text.toLowerCase();
+  text = text.replace(/[ÁÀÂÃ]/gi, 'a');
+  text = text.replace(/[ÉÈÊ]/gi, 'e');
+  text = text.replace(/[ÍÌÎ]/gi, 'i');
+  text = text.replace(/[ÓÒÔÕ]/gi, 'o');
+  text = text.replace(/[ÚÙÛ]/gi, 'u');
+  return text;
+};

@@ -14,6 +14,7 @@ import ReactNativeModal from 'react-native-modal';
 import { SvgProps } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Input from '../Input';
+import { removeAccents } from '../../utils/functions';
 
 interface SelectProps {
   coins: Coin[];
@@ -61,6 +62,18 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
     setOpenModal(false);
     onSelect(item, index);
   };
+  const getItems = () => {
+    if (search) {
+      const filtered = coins.filter((coin) => {
+        const text = removeAccents(
+          coin.name.toLowerCase() + coin.code.toLowerCase()
+        );
+        return text.includes(search);
+      });
+      return filtered;
+    }
+    return coins;
+  };
 
   return (
     <View>
@@ -81,10 +94,12 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
           <Text style={styles.modalText}>Selecione a moeda</Text>
           <Input
             style={styles.modalInput}
-            onChangeText={(text) => setSearch(text)}
+            onChangeText={(text) =>
+              setSearch(removeAccents(text.toLowerCase()))
+            }
           />
           <FlatList
-            data={coins}
+            data={getItems()}
             renderItem={({ item, index }) => (
               <Item
                 item={item}
