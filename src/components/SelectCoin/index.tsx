@@ -6,10 +6,12 @@ import Select from '../Select';
 
 interface SelectCoinProps {
   coins: Coin[];
+  onSelect: (item: any, index: number) => void;
 }
 
-const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
+const SelectCoin: React.FC<SelectCoinProps> = ({ coins, onSelect }) => {
   const styles = useStyles();
+  const [selectedIndexCoin, setSelectedIndexCoin] = useState(2);
   const [widthParent, setWidthParent] = useState(
     () => Dimensions.get('window').width
   );
@@ -23,20 +25,20 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins }) => {
     >
       <Select
         coins={coins}
-        onSelect={(item, index) => {
-          console.log('Select', item, index);
+        onSelect={(coin: Coin, index: number) => {
+          onSelect(coin, index);
+          setSelectedIndexCoin(index);
         }}
       />
 
-      <View>
-        <HorizontalSelectScrollView
-          widthParent={widthParent}
-          data={coins}
-          onSelect={(item, index) => {
-            console.log('HorizontalSelectScrollView', item, index);
-          }}
-        />
-      </View>
+      <HorizontalSelectScrollView
+        widthParent={widthParent}
+        toIndex={selectedIndexCoin}
+        data={coins}
+        onSelect={(coin, index) => {
+          onSelect(coin, index);
+        }}
+      />
     </View>
   );
 };

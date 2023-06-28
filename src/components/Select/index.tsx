@@ -49,17 +49,18 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
   const heightScreen = Dimensions.get('window').height;
   const insets = useSafeAreaInsets();
   const styles = useStyles({ heightScreen, insets });
-  const [selectedCoin, setSelectedCoin] = useState<Coin>(coins[3]);
+  const [selectedCoin, setSelectedCoin] = useState<Coin>(coins[2]);
   const [openModal, setOpenModal] = useState<boolean>(true);
   const [search, setSearch] = useState<string>('');
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
   const handleSelectItem = (coin: Coin) => {
-    setSelectedCoin(coin);
-    setOpenModal(false);
     const index = coins.findIndex((item) => item.code === coin.code);
+    setOpenModal(false);
     onSelect(coin, index);
+    setSelectedCoin(coin);
+    setSearch('');
   };
 
   const getItems = () => {

@@ -10,7 +10,7 @@ import Animated, {
 interface HorizontalSelectScrollViewProps {
   data: Coin[];
   rowItems?: number;
-  initialIndex?: number;
+  toIndex?: number;
   onSelect: (item: any, index: number) => void;
   widthParent: number;
 }
@@ -18,7 +18,7 @@ interface HorizontalSelectScrollViewProps {
 const HorizontalSelectScrollView: React.FC<HorizontalSelectScrollViewProps> = ({
   rowItems = 5,
   data,
-  initialIndex = 0,
+  toIndex = 0,
   onSelect,
   widthParent: widthParentProps,
 }) => {
@@ -34,9 +34,19 @@ const HorizontalSelectScrollView: React.FC<HorizontalSelectScrollViewProps> = ({
   const transX = useSharedValue(0);
 
   const handleCalculateLayout = () => {
-    if (scrollViewRef?.current) {
-      scrollViewRef.current.scrollToIndex({
-        index: initialIndex,
+    if (toIndex === 0) {
+      scrollViewRef.current?.scrollToOffset({
+        offset: size / 5,
+        animated: false,
+      });
+    } else if (toIndex === 1) {
+      scrollViewRef.current?.scrollToOffset({
+        offset: size,
+        animated: false,
+      });
+    } else {
+      scrollViewRef.current?.scrollToIndex({
+        index: toIndex - 2,
         animated: false,
       });
     }
@@ -76,6 +86,19 @@ const HorizontalSelectScrollView: React.FC<HorizontalSelectScrollViewProps> = ({
     isParkingRef.current = false;
   };
 
+  const handleScrollError = (error: {
+    index: number;
+    highestMeasuredFrameIndex: number;
+    averageItemLength: number;
+  }) => {
+    const offset = error.averageItemLength * error.index;
+    scrollViewRef.current?.scrollToOffset({ offset });
+    setTimeout(
+      () => scrollViewRef.current?.scrollToIndex({ index: error.index }),
+      100
+    );
+  };
+
   return (
     <View style={styles.timelineContainer}>
       <AnimatedFlatList
@@ -103,6 +126,7 @@ const HorizontalSelectScrollView: React.FC<HorizontalSelectScrollViewProps> = ({
         onMomentumScrollBegin={handleCancelParking}
         onMomentumScrollEnd={handleSelectItem}
         contentContainerStyle={styles.contentContainerStyle}
+        onScrollToIndexFailed={handleScrollError}
       />
     </View>
   );

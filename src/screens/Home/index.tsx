@@ -16,12 +16,17 @@ const Home: React.FC = () => {
   return (
     <View>
       <Text>Eu sou a Home page ó</Text>
-      <SelectCoin coins={moedasContext?.moedas ?? []} />
+      <SelectCoin
+        coins={moedasContext?.moedas ?? []}
+        onSelect={(coin: Coin, index: number) => {
+          console.log('coin', coin, index);
+        }}
+      />
 
-      {/* <CustomButton
+      <CustomButton
         title="Detalhes"
         onPress={() => navigate(ROUTES_NAME.DETAILS)}
-      /> */}
+      />
     </View>
   );
 };
