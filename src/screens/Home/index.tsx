@@ -6,10 +6,12 @@ import { useContext } from 'react';
 import { MoedasContext } from '../../contexts/moedas';
 import SelectCoin from '../../components/SelectCoin';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useStyles } from './styles';
 
 const Home: React.FC = () => {
   const { navigate } =
     useNavigation<NativeStackNavigationProp<StackParamList>>();
+  const styles = useStyles();
 
   const moedasContext = useContext(MoedasContext);
 
@@ -21,6 +23,14 @@ const Home: React.FC = () => {
         onSelect={(coin: Coin, index: number) => {
           console.log('coin', coin, index);
         }}
+        style={styles.coin}
+      />
+      <SelectCoin
+        coins={moedasContext?.moedas ?? []}
+        onSelect={(coin: Coin, index: number) => {
+          console.log('coinIn', coin, index);
+        }}
+        style={styles.coinIn}
       />
 
       <CustomButton

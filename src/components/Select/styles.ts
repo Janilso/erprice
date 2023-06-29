@@ -12,7 +12,21 @@ interface UseStylesItemProps {
 
 export const useStyles = ({ heightScreen, insets }: UseStylesProps) =>
   StyleSheet.create({
-    root: {},
+    root: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 2,
+      paddingVertical: 12,
+    },
+    text: {
+      ...globalStyles.fontH6Regular,
+      color: colors.primaryMedium,
+    },
+    modal: {
+      justifyContent: 'flex-end',
+      margin: 0,
+    },
     modalContainer: {
       paddingTop: 30,
       paddingRight: insets.right,

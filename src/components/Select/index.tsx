@@ -13,6 +13,7 @@ import { SvgProps } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Input from '../Input';
 import { removeAccents } from '../../utils/functions';
+import { Icon } from '../../../assets/icons';
 
 interface SelectProps {
   coins: Coin[];
@@ -50,7 +51,7 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
   const insets = useSafeAreaInsets();
   const styles = useStyles({ heightScreen, insets });
   const [selectedCoin, setSelectedCoin] = useState<Coin>(coins[2]);
-  const [openModal, setOpenModal] = useState<boolean>(true);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
 
   const handleOpenModal = () => setOpenModal(true);
@@ -77,19 +78,22 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
   };
 
   return (
-    <View>
+    <>
       <TouchableHighlight
         underlayColor={colors.primaryDark13}
         onPress={handleOpenModal}
       >
-        <Text>{selectedCoin?.name ?? 'Selecione'}</Text>
+        <View style={styles.root}>
+          <Text style={styles.text}>{selectedCoin?.name ?? 'Selecione'}</Text>
+          <Icon.ChevronDown />
+        </View>
       </TouchableHighlight>
 
       <ReactNativeModal
         isVisible={openModal}
         onBackButtonPress={handleCloseModal}
         onBackdropPress={handleCloseModal}
-        style={{ justifyContent: 'flex-end', margin: 0 }}
+        style={styles.modal}
       >
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>Selecione a moeda</Text>
@@ -112,7 +116,7 @@ const Select: React.FC<SelectProps> = ({ coins, onSelect }) => {
           />
         </View>
       </ReactNativeModal>
-    </View>
+    </>
   );
 };
 
