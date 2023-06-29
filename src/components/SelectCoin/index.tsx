@@ -2,7 +2,6 @@ import {
   Dimensions,
   LayoutChangeEvent,
   StyleProp,
-  Text,
   View,
   ViewStyle,
 } from 'react-native';
