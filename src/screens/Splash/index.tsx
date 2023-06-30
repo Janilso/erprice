@@ -6,7 +6,7 @@ import { colors } from '../../theme';
 import { Icon } from '../../../assets/icons';
 import cotacaoSevice from '../../services/cotacao';
 import { storage } from '../../utils/storage';
-import { checkDiffDate } from '../../utils/functions';
+import { checkDiffDate, getSymbolByCode } from '../../utils/functions';
 import { MoedasContext } from '../../contexts/moedas';
 import { useNavigation } from '@react-navigation/native';
 import { ROUTES_NAME } from '../../routes/routesName';
@@ -64,6 +64,7 @@ const Splash: React.FC = () => {
 
   useEffect(() => {
     verifyStorage();
+    getSymbolByCode();
   }, []);
 
   return (

@@ -1,6 +1,11 @@
 import { DOMParser } from '@xmldom/xmldom';
 import { differenceInDays } from 'date-fns';
 
+export const getSymbolByCode = () => {
+  console.log('symbolsJson', SYMBOLS);
+  // const symbols = ;
+};
+
 export const getMoedasByDataXML = (xml: string) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(xml, 'text/xml');

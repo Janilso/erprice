@@ -9,6 +9,7 @@ export const useStyles = () =>
       borderRadius: 17,
       shadowColor: colors.black10,
       elevation: 10,
+      position: 'relative',
     },
     linearGradient: {
       ...StyleSheet.absoluteFillObject,

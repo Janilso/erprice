@@ -1,4 +1,8 @@
-import { GestureResponderEvent, TouchableHighlight } from 'react-native';
+import {
+  ColorValue,
+  GestureResponderEvent,
+  TouchableHighlight,
+} from 'react-native';
 import { colors } from '../../theme';
 import { useStyles } from './styles';
 
@@ -7,6 +11,7 @@ interface IconButtonProps {
   height?: number;
   children: React.ReactElement;
   onPress?: (event: GestureResponderEvent) => void;
+  underlayColor?: ColorValue;
 }
 
 const IconButton: React.FC<IconButtonProps> = ({
@@ -14,13 +19,14 @@ const IconButton: React.FC<IconButtonProps> = ({
   onPress,
   width,
   height,
+  underlayColor = colors.primaryDark13,
 }) => {
   const styles = useStyles({ width, height });
 
   return (
     <TouchableHighlight
       style={styles.root}
-      underlayColor={colors.primaryDark13}
+      underlayColor={underlayColor}
       onPress={onPress}
     >
       {children}

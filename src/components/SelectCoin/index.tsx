@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { useStyles } from './styles';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import HorizontalSelectScrollView from '../HorizontalSelectScrollView';
 import Select from '../Select';
 
@@ -14,9 +14,17 @@ interface SelectCoinProps {
   coins: Coin[];
   onSelect: (item: any, index: number) => void;
   style?: StyleProp<ViewStyle>;
+  topContent?: ReactNode;
+  onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const SelectCoin: React.FC<SelectCoinProps> = ({ coins, onSelect, style }) => {
+const SelectCoin: React.FC<SelectCoinProps> = ({
+  coins,
+  onSelect,
+  style,
+  topContent,
+  onLayout = () => {},
+}) => {
   const styles = useStyles();
   const [selectedIndexCoin, setSelectedIndexCoin] = useState(2);
   const [widthParent, setWidthParent] = useState(
@@ -28,8 +36,10 @@ const SelectCoin: React.FC<SelectCoinProps> = ({ coins, onSelect, style }) => {
       style={[styles.root, style]}
       onLayout={(e: LayoutChangeEvent) => {
         setWidthParent(e.nativeEvent.layout.width - 32);
+        onLayout(e);
       }}
     >
+      {topContent ? topContent : null}
       <Select
         coins={coins}
         onSelect={(coin: Coin, index: number) => {
